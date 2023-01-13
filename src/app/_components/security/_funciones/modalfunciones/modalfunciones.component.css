@@ -1,0 +1,15 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+
+.div-scroll {
+    overflow:scroll;
+    height:500px;
+    width:100%;
+    font-size: 12px;
+}

@@ -1,0 +1,17 @@
+.dashboard-card-content {
+    position: center;
+    top: 150px;
+    left: 150px;
+    right: 150px;
+    bottom: 150px;
+    max-width: 250px;
+    min-width: 250px;
+}
+
+td {
+    padding: 15px;
+}
+
+table {
+    margin: 90px;
+}

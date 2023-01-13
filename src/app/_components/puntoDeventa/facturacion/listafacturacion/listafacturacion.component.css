@@ -1,0 +1,48 @@
+.container1 {
+    margin: 0.625rem;
+    padding: 0.938rem
+  }
+
+  .flex-container{  
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+    
+  table {
+    width: 100%;
+  }
+  
+  .mat-header-cell {
+    font-size: 15px;
+    font-weight: bolder;
+  }
+  
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .fila{
+    background-color: yellow;
+  }
+  
+  .color-fondo {
+  background-color:#e9e6e6;
+  }
+
+
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .font-size-rows {
+    font-size: 13px;
+  }
+

@@ -1,0 +1,127 @@
+<mat-toolbar color="primary">
+    <h2 mat-dialog-title>{{data.roles.titulo}}</h2>
+    <span class="fill-remaining-space"></span>
+    <div class="spacer"></div>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+</button>
+</mat-toolbar>
+
+<mat-card>
+
+    <mat-card-content>
+        <!-- This is where you need to add your login form -->
+    </mat-card-content>
+
+    <form [formGroup]="rolesForm">
+        
+            <!--tab control-->
+            <mat-tab-group dynamicHeight>  
+                <!--primer ficha-->
+                <mat-tab label="Datos del rol">
+                    <!--para hacer la pagina grande-->
+                    <div class="example-large-box- mat-elevation-z4">
+
+                        <!--1era fila-->
+                        <div class="row">
+                            <!--funcionID-->
+                            <div class="col-md-3 col-lg-3">                              
+                                <!--rolId -->
+                                <mat-form-field appearance="standard" style="width:100%;">
+                                    <mat-label>rolID</mat-label>
+                                    <input matInput readonly formControlName="rolID">
+                                </mat-form-field>
+
+                            </div>                        
+                        </div>
+                        <!--row fin de la 1ra. fila-->
+
+                        <!--2da fila -->
+                        <div class="row">                            
+                            <!--nombre del rol-->
+                            <div class="col-md-6 col-lg-6">                                                     
+                                <!--Nombre Rol-->
+                                <mat-form-field appearance="standard" style="width:100%;">
+                                    <mat-label>Nombre del Rol</mat-label>
+                                    <input matInput formControlName="nombreRol">
+                                    <mat-error *ngIf="rolesForm.get('nombreRol').errors && rolesForm.get('nombreRol').touched">
+                                        <p *ngIf="rolesForm.get('nombreRol').hasError('required')">Debes de escribir el nombre del rol </p>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!--fin nombre del rol-->
+
+                            <!--Descripcion del rol-->
+                            <div class="col-md-6 col-lg-6">
+                                <!-- -->
+                                <mat-form-field appearance="standard" style="width:100%;">
+                                    <mat-label>Descripcion del rol</mat-label>
+                                    <input matInput formControlName="descripcion">
+                                    <mat-error *ngIf="rolesForm.get('descripcion').errors && rolesForm.get('descripcion').touched">
+                                        <p *ngIf="rolesForm.get('descripcion').hasError('required')">Debes de escribir la descripción del rol </p>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>                                
+                        </div>
+                  
+
+                        <!--3era fila-->
+                        <div class="row">
+                            <!--activo-->
+                            <div class="col-md-2 col-lg-2">                                               
+                                <div class="add-bottom-padding">
+                                    <!-- <mat-slide-toggle color="primary" formControlName="activo">activo-->
+                                    <mat-slide-toggle color="primary" formControlName="activo" (click)="validarStatuActivo()">Activo
+                                    </mat-slide-toggle>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-5 col-lg-5">
+                                <!--Nombre Rol-->
+                                <mat-form-field appearance="standard" style="width: 100%;">
+                                    <mat-label>Fecha Creacion</mat-label>
+                                    <input matInput formControlName="fechaCreacion">
+                                </mat-form-field>
+                            </div>                            
+                            
+                            <div class="col-md-5 col-lg-5">
+                                <!--Nombre Rol-->
+                                <mat-form-field appearance="standard" style="width: 100%;">
+                                    <mat-label>Fecha Modificacion</mat-label>
+                                    <input matInput formControlName="fechaModificacion">
+                                </mat-form-field>
+                            </div>        
+                            
+                        </div>
+                        <!-- fin row 2da fila-->                                              
+                    </div>
+                    <!--example large-->
+                </mat-tab>
+                <!--Fin tab page datos de roles-->
+
+                <!---2da ficha-->
+                <mat-tab label="Funciones">
+                    <!--para hacer la pagina mas grande -->
+                    <div class="example-large-box mat-elevation-z4">                    
+                        <!--La variable dataRolesFunciones esta declarada en el componente: rolesfunciones(_components/security/_componente/rolesfunciones.components.ts),
+                            aqui lo que hace es pasar la informacion de las funciones al componente rolesfunciones  -->                          
+                        <app-rolesfunciones [dataRolesFunciones]="this.data.funcionesRoles" [ventanaDelComponenteaMostrar]="'funciones'" ></app-rolesfunciones>                                                                                           
+                    </div>
+                </mat-tab>
+                <!--Fin tab page roles usuaio-->
+            </mat-tab-group>
+            <!---fin del tabcontrol-->
+
+        <div mat-dialog-actions>
+            <button mat-raised-button class="primary" color="primary" (click)="onGuardar()">{{textBotonGuardar}}</button>
+            <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+        </div>
+
+    </form>
+
+    <mat-card-actions>
+
+    </mat-card-actions>
+
+</mat-card>

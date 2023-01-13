@@ -1,0 +1,136 @@
+<div class="row btn-dark "  style="left: 2px;" >
+  <span style="margin-left:15px; font-size:30px;cursor:pointer" (click)="openNav($event)">&#9776; open</span>
+
+  <!-- espacio -->
+  <span class="example-spacer"></span>
+
+
+  <button mat-button color="warn" style="color: white;cursor:default;">oalcantara</button>
+  
+  <button mat-button color="warn" style="color: white;" (click)="logout($event)">Cerrar Sesion</button>  
+</div>
+
+
+<div id="myNav" class="top-overlay">
+
+  <!--<img src="../../../assets/img/exit_delete_17827.png" class="botonx" alt="puntoventa" (click)="closeNav()">-->
+  <a href="#" class="closebtn" (click)="closeNav($event)">&times;</a>
+
+  <section class="content">
+      <div class="container-fluid mt-4 " style="width:90%; margin-left:10px;">
+         
+          <div class="row" style="font-size:10px;">
+
+              <div class="col-md-4">
+                  <h3 class="widget-user-username" style="color:white; font-size:medium; font-weight: bold">Bodega</h3>
+                  
+                  <div class="row">
+                      <a class="btn btn-app bg-secondary" routerLink="./facturacion" (click)="closeNav($event)"> 
+                       
+                          <img src="../../../assets/img/invoice.png" class="img-fluid" style="margin-top: 0cm;" alt="puntoventa">
+                         
+                          <!--<i class="fas fa-file-invoice"></i>-->
+                           Facturacion
+                      </a>   
+      
+                      <a class="btn btn-app bg-secondary">   
+                          <img src="../../../assets/img/devolucion-de-producto.png" class="img-fluid" style="margin-top: 0cm;" alt="puntoventa">                                 
+                           Devolucion
+                      </a>
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+                      <div class="w-100"></div>
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>   
+      
+                  </div>                    
+              </div>
+
+              <div class="col-md-4">
+                  <h3 class="widget-user-username" style="color:white; font-size:medium; font-weight: bold">Seguridad</h3>
+                  
+                  <div class="row" style="font-size:15px">
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>   
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Devolucion
+                      </a>
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+                      <div class="w-100"></div>
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>   
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+                  </div>                    
+              </div>
+              
+          </div>
+
+
+
+          <div class="container-box">
+              <h3 class="widget-user-username" style="color:white; font-size:medium; font-weight: bold">Punto de Venta</h3>
+              <div class="row">                    
+                  <button class="item-list block btn btn-secondary"> 
+                      <img src="../../../assets/img/invoice.png" class="img-fluid" alt="puntoventa">
+                      Facturacion 
+                  </button>
+                  <!--Espacio-->
+                  <div style="margin-left:0.3em;"></div>    
+
+                  <button class="item-list block btn btn-secondary"> 
+                      <img src="../../../assets/img/devolucion-de-producto.png" class="img-fluid" alt="puntoventa">
+                      Devolucion  
+                  </button>
+
+                   <!-- Force next columns to break to new line -->
+                   <div class="w-100"></div>
+
+                   <button class="item-list block btn btn-secondary" style="margin-top:0.2em;"> 
+                      <img src="../../../assets/img/invoice.png" class="img-fluid" alt="puntoventa">
+                      Eliminar 
+                  </button>
+
+                  <!--Espacio-->
+                  <div style="margin-left:0.3em;"></div>    
+
+                  <button class="item-list block btn btn-secondary" style="margin-top:0.2em;"> 
+                      <img src="../../../assets/img/buscarcliente.png" class="img-fluid" alt="puntoventa">
+                      <label>Consulta de <br>cliente</label>                        
+                  </button>
+
+              </div>
+        
+          </div>
+          
+
+     
+      </div>
+
+      <!-- /.container-fluid -->
+  </section>
+
+
+  <!--<div class="overlay-content">
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>-->
+
+</div>

@@ -1,0 +1,248 @@
+<!--<a  title="Close" class="close">X</a>-->
+<div class="row btn-dark ">
+    Facturacion
+    <!-- espacio -->
+    <span class="spacer"></span>
+    
+    <!--<button mat-button color="warn" style="color: white;cursor:cursor;" (click)="onClose()" >X</button> -->
+    <button mat-menu-item style="color: white;cursor:cursor;" (click)="onClose()">X</button>
+    
+</div>
+
+<!--<mat-toolbar color="primary">
+    <h2 mat-dialog-title> {{data}}</h2>
+    <span class="fill-remaining-space"></span>
+    <div class="spacer"></div>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>-->
+
+
+    <form [formGroup]="frmFacturacion" style="background-color: #ecf0f5;">
+    <div class="content-header" >
+        <div class="container-fluid" >
+            <!--Titulo punto de venta-->
+            <h4 class="m-0"><b></b></h4>
+            <div class="d-flex bd-highlight mb-3">
+                <div class="p-2 bd-highlight"> <b>No. Factura: </b></div>
+                <div class="p-1 bd-highlight"><input class="form-control form-control-sm color-border-blue" formControlName="noFactura" type="text" readonly></div>            
+                <div class="p-1 bd-highlight"> <button mat-raised-button color="warn">Recuperar Factura</button> </div>            
+                <div class="p-2 bd-highlight"><b>Fecha:</b></div>
+                <div class="p-1 bd-highlight"><input class="form-control form-control-sm color-border-blue" formControlName="fecha"  type="text" readonly></div>
+
+                <div class="p-2 bd-highlight"> <b>Tipo de Cambio: </b></div>
+                <div class="p-1 bd-highlight"><input class="form-control form-control-sm color-border-blue" formControlName="tipoCambioDelDia" type="number" readonly></div>        
+            </div>
+
+            <!--contenido-->
+            <div class="row">
+                <!--datos del cliente-->
+                <div class="col-md-8">
+                    
+                    <div class="border-cuadro color-border-left-warning">                 
+                        <h5 class="color-text-blue">Cliente</h5> 
+                        <div class="d-flex flex-row bd-highlight mb-3">
+                            <!--input  search-->
+                            <div class="p-1 bd-highlight">
+                                <input class="form-control form-control-sm" style="color:red; " type="search" placeholder="codigo del Cliente" (keypress)="onBuscarDatosCliente($event)" formControlName="codigoCliente" >                                     
+                            </div>
+                            <div class="p-1 bd-highlight"><b class="color-text-blue">Cliente: </b>{{ listVarFactura.nombreCliente }}</div>
+                            <div class="p-1 bd-highlight"><b class="color-text-blue">Disponible: </b> C$ {{ listVarFactura.saldoDisponible }}</div>
+                            <div class="p-1 bd-highlight"> <b class="color-text-blue">Descuento: </b>{{ listVarFactura.porcentajeDescCliente }} %</div>
+                        </div>                                       
+                    </div>
+
+                </div>
+            
+                <!--bodega-->
+                <div class="col-4">
+                    <div class="border-cuadro color-border-left-warning">
+                        <h5>Bodega</h5>
+        
+                        <div class="d-flex flex-row bd-highlight mb-3">
+                            <!--input  search-->
+                            <div class="p-1 bd-highlight">
+                            <select class="custom-select custom-select-sm" formControlName="bodegaID" >
+                                    <option *ngFor="let datBodega of listaBodega" [value]="datBodega.vendedor">{{ datBodega.nombre }}</option>                    
+                            </select>
+                                <!--<input class="form-control form-control-sm" style="color:red; " type="search" placeholder="codigo del articulo" (keypress)="onBuscarArticulo($event)" id="articuloId" formControlName="codigoBarra">--> </div>
+                                                
+                            <!--<div class="p-1 bd-highlight">                           
+        
+                            </div>-->
+                        </div>  
+                        
+                    </div>
+        
+                </div>
+        
+            </div>           
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+            
+                        <!-- /.card-header -->
+                        
+                        <div class="card-body table-responsive p-0" style="height:5%;">
+                            <table class="table table-head-fixed text-nowrap" style="padding: 0.3rem import;">
+                                <thead>
+                                    <tr style="color:#0059b3;"> 
+                                        <th>Codigo</th>
+                                        <th>Cantidad</th>
+                                        <th>Descripcion</th>
+                                        <th>Unidad</th>
+                                        <th>Precio</th>
+                                        <th>Sub-Total</th>
+                                        <th>Descuento %</th>                                                
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let element of listDetFactura " >
+                                    <tr id="{{element.consecutivo}}">                                            
+                                        <td><input class="form-control form-control-sm"
+                                            style="width:150px;" type="text" (focus)="onFocusEvent($event)" (blur)="onBlurEvent($event, valor.value)" (keypress)="onBuscarArticulo($event)" value="{{element.codigoBarra}}" id="codigoBarra_{{element.consecutivo }}" [disabled]="(!element.inputArticuloDesactivado)?true:false" ></td>                                                
+                                        <td><input type="number" class="form-control form-control-sm" (focus)="onFocusEvent($event)" (blur)="onBlurEvent($event, valor.value)" #valor (keypress)="onKeypressActualizarCantidad($event)" style="color: blue; width:85px;"  value="{{element.cantidad}}" id="cantidad_{{element.consecutivo}}" [disabled]="(!element.inputCantidadDesactivado)?true:false"></td>                                                                                                
+                                        <td>{{element.descripcion}}</td>
+                                        <td>{{element.unidad}} </td>    
+                                        <td>C$ {{element.precioCordobas.toFixed(2) }}</td>
+                                        <td>C$ {{element.subTotalCordobas.toFixed(2)}}</td>
+                                        <td> <input type="number" class="form-control form-control-sm" (focus)="onFocusEvent($event)" (blur)="onBlurEvent($event, valor.value)" #valor (keypress)="onKeypressActualizarDescLinea($event)" style="color: blue; width:85px;"  value="{{element.porCentajeDescuento}}" id="porCentajeDescuento_{{element.consecutivo}}" [disabled]="(!element.inputCantidadDesactivado)?true:false"></td>                                              
+                                        <td>C$ {{element.totalCordobas.toFixed(2)}}</td>
+                                        <td>
+                                        <!--<td *ngIf="detalleFact.inputUnicoSigArticulo==false">-->
+                                                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" disabled="{{element.botonEliminarDesactivado}}" (click)="onEliminarArticulo($event, element.articuloId, element.consecutivo )">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                        </td>
+                                    </tr>
+                                                                                                                                                                                            
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="exampleFormControlTextarea1">Observaciones</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="observaciones"  rows="5"></textarea>                            
+                </div>
+                <div class="col-md-8">
+                    <!--subtototal-->
+                    <div class="d-flex justify-content-end">
+                        <div class="p-2 bd-highlight"><b>Sub Total: </b></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="subTotalDolar" readonly placeholder="U$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;" ></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="subTotalCordoba" readonly readonly placeholder="C$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;"  ></div>                            
+                    </div>
+
+                    <!--descuento-->
+                    <div class="d-flex justify-content-end">
+                        <div class="p-1 bd-highlight"> 
+                            <label for="">(</label><mat-slide-toggle class="example-margin" formControlName="descuentoSobreDescuento" (change)="onChange_CheckDescuentoSobreDescuento()" 
+                            color="warn" [disabled]="listVarFactura.checkDisabledDSD">   +DSD)
+                            </mat-slide-toggle>
+                        </div>
+                        <div class="p-2 bd-highlight"><b>Descuento: </b></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="descuentoDolar" readonly readonly placeholder="U$0.00" class="form-control form-control-sm"  style="border: 1px solid #156fab; background-color: #D4E6F1;"></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="descuentoCordoba" readonly readonly placeholder="C$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;"   ></div>                            
+                    </div>
+
+                    <!--subtotal descuento-->
+                    <div class="d-flex justify-content-end">
+                        <div class="p-2 bd-highlight"><b>Sub Total Descuento: </b></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="subTotalDescuentoDolar" readonly readonly placeholder="U$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1; "></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="subTotalDescuentoCordoba" placeholder="C$0.00" readonly class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;"></div>                            
+                    </div>
+
+                    <!--iva-->
+                    <div class="d-flex justify-content-end">
+                        <div class="p-2 bd-highlight"><b>IVA: </b></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="ivaDolar" readonly readonly placeholder="U$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;"></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="ivaCordoba" readonly placeholder="C$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;" ></div>                            
+                    </div>
+                                    
+                    <!--total-->
+                    <div class="d-flex justify-content-end">
+                        <div class="p-2 bd-highlight"><b>Total: </b></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="totalDolar" readonly placeholder="U$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1; " ></div>
+                        <div class="p-1 bd-highlight"><input type="text" formControlName="totalCordoba" readonly placeholder="C$0.00" class="form-control form-control-sm" style="border: 1px solid #156fab; background-color: #D4E6F1;"  ></div>                            
+                    </div>    
+                </div>
+            </div>
+
+
+            <div class="row" >
+
+                <div class="col-md-4">                                                                 
+                    <label for="formaPago">Forma de Pago</label>
+                    <div class="form-group">                                
+                        <select id="formaPago"  class="custom-select custom-select-sm" style="font-size: 100%;" (change)="onChange($event)" formControlName="forma_Pago" >
+                            <option *ngFor="let datFormaPago of listFormaPago"  [value]="datFormaPago.forma_Pago">{{ datFormaPago.descripcion }}</option>                    
+                    </select>
+                    </div>
+                </div>
+                                    
+                    <div class="col-md-4" [ngStyle]="{'display': listVarFactura.visibleTipoTarjeta}" >                                                                 
+                        <label for="tipoTarjeta" visible>Tipo de Tarjeta</label>
+                        <div class="form-group">                                
+                            <select  id="tipoTarjeta" class="custom-select custom-select-sm" style="font-size: 100%;" formControlName="tipo_Tarjeta">
+                                <option *ngFor="let datTipoTarjeta of listaTipoTarjeta" [value]="datTipoTarjeta.tipo_Tarjeta">{{ datTipoTarjeta.tipo_Tarjeta }}</option>                    
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4" [ngStyle]="{'display': listVarFactura.visibleCondicionPago}" >                                                                 
+                        <label for="condicionPago" visible>Condicion de Pago</label>
+                        <div class="form-group">                                
+                            <select  id="condicionPago" class="custom-select custom-select-sm" style="font-size: 100%;" formControlName="condicion_Pago">
+                                <option *ngFor="let datCondicionPago of listaCondicionPago" [value]="datCondicionPago.condicion_Pago">{{ datCondicionPago.descripcion }}</option>                    
+                            </select>
+                        </div>
+                    </div>
+            
+            </div>
+
+            <div class="card card-gray-dark">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <mat-card-content>    
+                        <!-- /.row -->
+
+
+                    </mat-card-content>                    
+                </div>
+                <!-- /.card-body -->        
+                
+            </div>    
+        </div>
+
+        <!--/. container-fluid -->
+    </section>
+
+
+    <section class="container-fluid">    
+        <div class="example-button-row">                
+            <button mat-raised-button color="warn" [disabled]="listVarFactura.desactivarBotonValDes"   (click)="onClickValidarDescuento()">Validar Descuento %</button>
+            <button mat-raised-button color="primary" [disabled]="listVarFactura.desactivarBotonGuardar" (click)="onGuardarFactura()"  >Guardar</button>
+        </div>
+    </section>
+
+    </form>
+
+<!--
+<div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+-->

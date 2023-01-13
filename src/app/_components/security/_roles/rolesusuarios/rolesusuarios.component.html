@@ -1,0 +1,81 @@
+<div class="col">
+    <button mat-button color="primary" style="color:#3f51b5;" (click)="onCrearNuevaRol()" title="agregar un nuevo rol" [disabled]="estadoBotonNuevoRol">
+      <!--<mat-icon  style="color:#3f51b5;">add</mat-icon>-->
+      <mat-icon style="color:#3f51b5;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+      </mat-icon>
+      Nuevo Rol
+    </button>
+</div>
+
+<table border=1>
+    <thead>
+        <tr>
+            <td><strong>NombreRol</strong></td>
+            <td><strong>Descripcion</strong></td>
+            <td><strong>Activo</strong></td>
+        </tr>
+    </thead>
+
+    <tr>
+        <td>Administrador</td>
+        <td>El administrador maneja el sistema</td>
+        <td>Activo</td>
+    </tr>
+
+    <tr>
+        <td>Vendedor</td>
+        <td>El vendedor puede visualizar los listados</td>
+        <td>Activo</td>
+    </tr>
+
+    <tr>
+        <td>Financiero</td>
+        <td>El financiero solo visualiza los catalogos</td>
+        <td>Activo</td>
+    </tr>
+</table>
+
+
+<!--
+<mat-card>
+    <mat-card-content class="dashboard-card">
+
+        <form [formGroup]="frmRolUsuario">
+
+            <div class="example-large-box- mat-elevation-z4">
+-->
+<!--Asignacion de roles al usuario-->
+<!--  <div class="col-md-800 col-lg-800">-->
+<!--from-field-->
+<!--   <mat-form-field appearance="standard" style="width: 100%;">
+                        <mat-label>Asignar rol al usuario</mat-label>
+                        <mat-select id="rol" placeholder="" formControlName="rolID">
+                            <mat-option>Asignar rol </mat-option>-->
+<!-- <ng-container *ngFor="let roles of listRoles">
+                          <mat-option value="{{roles.rolID}}">{{roles.nombreRol}}</mat-option>
+                      </ng-container>-->
+<!--  </mat-select>-->
+<!-- <mat-error *ngIf="isValidField('rolID')">
+                      {{getErrorMensage("rolID")}}
+                  </mat-error>-->
+<!--          </mat-form-field>
+                </div>
+
+            </div>
+
+            <div mat-dialog-actions>-->
+
+
+<!--<button mat-raised-button color="primary" (click)="onAplicar(false)">{{textBotonAplicar}}</button>-->
+
+
+<!--   </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>-->
+

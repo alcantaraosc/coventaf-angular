@@ -1,0 +1,98 @@
+<div class="row btn-dark " style="left: 2px;">
+  <span style="margin-left:15px; font-size:30px;cursor:pointer" (click)="openNav($event)">&#9776;</span>
+
+  <!-- espacio -->
+  <span class="example-spacer"></span>
+
+
+  <button mat-button color="warn" style="color: white;cursor:default;">usuario: {{user.usuario}}</button>
+  
+  <button mat-button color="warn" style="color: white;" (click)="logout($event)">Cerrar Sesion</button> 
+  
+   <!--cargando -->
+   <div [ngClass]="{'cargando': loading}"></div>
+  
+</div>
+
+<div id="myNav" class="top-overlay">
+
+  <!--<img src="../../../assets/img/exit_delete_17827.png" class="botonx" alt="puntoventa" (click)="closeNav()">-->
+  <a href="#" class="closebtn" (click)="closeNav($event)">&times;</a>
+
+  <section class="content">
+      <div class="container-fluid mt-4" style="width:90%; margin-left:10px;">
+         
+          <div class="row" style="font-size:10px;">
+
+              <div class="col-md-4">
+                  <h3 class="widget-user-username" style="color:white; font-size:medium; font-weight: bold">Punto de Venta</h3>
+                  
+                  <div class="row">
+                      <a class="btn btn-app bg-secondary"  routerLink="./punto-venta/lista-facturacion"  (click)="closeNav($event)"> 
+                        <!--<i class="material-icons">3d_rotation</i>-->
+                        <i class="fas fa-file-invoice-dollar" style='font-size:34px; color:chartreuse'></i> 
+                        Facturacion                     
+                      </a>   
+      
+                      <a class="btn btn-app bg-secondary" style="color:chartreuse">                                                                      
+                        <i class="fas fa-search" style='font-size:34px; color:chartreuse'></i>
+                        Consultas
+                      </a>
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+                      <div class="w-100"></div>
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>   
+      
+                  </div>                    
+              </div>
+
+              <div class="col-md-4">
+                  <h3 class="widget-user-username" style="color:white; font-size:medium; font-weight: bold">Seguridad</h3>
+                  
+                  <div class="row" style="font-size:15px">
+                      <a class="btn btn-app bg-secondary" routerLink="./seguridad/listar-usuario" (click)="closeNav($event)">                    
+                          <i class="fas fa-barcode"></i> Usuario
+                      </a>   
+      
+                      <a class="btn btn-app bg-secondary" routerLink="./seguridad/listar-roles" (click)="closeNav($event)">                    
+                          <i class="fas fa-barcode"></i> Roles
+                      </a>
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+                      <div class="w-100"></div>
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>   
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+      
+                      <a class="btn btn-app bg-secondary">                    
+                          <i class="fas fa-barcode"></i> Facturacion
+                      </a>
+                  </div>                    
+              </div>
+              
+          </div>
+                   
+      </div>
+
+      <!-- /.container-fluid -->
+  </section>
+
+
+  <!--<div class="overlay-content">
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>-->
+
+</div>

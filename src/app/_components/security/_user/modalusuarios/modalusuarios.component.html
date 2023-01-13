@@ -1,0 +1,167 @@
+<mat-toolbar color="primary">
+    <h2 mat-dialog-title>{{ data.usuarios.titulo }}</h2>
+    <span class="fill-remaining-space"></span>
+    <div class="spacer"></div>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-content>
+        <!-- <div class="row">
+            <div class="col-md-4 col-lg-4"></div>
+            <h3 style="text-align: center">Detalle del usuario</h3>
+        </div> -->
+
+        <form [formGroup]="frmUsuario">
+            <!--tab page-->
+            <mat-tab-group dynamicHeight>
+                <mat-tab label="Datos del Usuario">
+                    <!--para hacer la pagina grande-->
+                    <div class="example-large-box- mat-elevation-z4">
+
+                        <!--1era fila-->
+                        <div class="row">
+
+                            <!--UsuarioID-->
+                            <div class="col-md-2 col-lg-3">
+
+                                <mat-form-field appearance="standard" style="width: 100%;">
+                                    <mat-label>Usuario</mat-label>
+                                    <input matInput placeholder="usuario" formControlName="usuario">
+                                </mat-form-field>
+                            </div>
+                            <!--col-md-4 col-lg-4-->
+
+                            <!--nombre del usuario-->
+                            <div class="col-md-5 col-lg-5">
+                                <mat-form-field appearance="standard" style="width: 100%;">
+                                    <mat-label>Nombre y Apellido del Usuario</mat-label>
+                                    <input matInput formControlName="nombre">
+                                    <mat-error *ngIf="frmUsuario.get('nombre').hasError('required')">
+                                        Campo requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <!--correo-->
+                            <div class="col-md-5 col-lg-4">
+                                <mat-form-field appearance="standard" style="width: 100%">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="correo_Electronico">
+                                </mat-form-field>
+                            </div>
+                            <!--fin nombUsuario-->
+                           
+                        </div>
+                        <!--row fin de la 1ra. fila-->
+
+                        <!--3era fila-->
+                        <div class="row">
+
+                            <div class="col-md-4 col-lg-4">
+                                                 
+                                <mat-form-field appearance="standard" style="width: 100%;">
+                                    <mat-label>*Grupo</mat-label>
+                                    <mat-select placeholder="" formControlName="grupo">
+                                      <mat-option>Seleccione Grupo</mat-option>
+                                      <ng-container *ngFor="let tipoGrupo of listGrupo">
+                                        <mat-option value="{{tipoGrupo.grupo}}">
+                                          {{ tipoGrupo.descripcion }}</mat-option>
+                                      </ng-container>
+                                    </mat-select>
+                                    <mat-error
+                                      *ngIf="frmUsuario.get('grupo').errors && frmUsuario.get('grupo').touched">
+                                      <p *ngIf="frmUsuario.get('grupo').hasError('required')">es un campo requerido</p>
+                                    </mat-error>
+                                </mat-form-field>
+
+                            </div>
+
+                            
+
+                            <!--Clave cifrada-->
+                             <div class="col-md-4 col-lg-4">
+                                <mat-form-field appearance="standard" style="width: 100%">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" formControlName="claveCifrada">
+                                </mat-form-field>
+                            </div>
+                           
+                            <!--Password del Usuario-->
+                            <div class="col-md-4 col-lg-4">
+                                <mat-form-field appearance="standard" style="width: 100%">
+                                    <mat-label>Confirmar Password</mat-label>
+                                    <input matInput type="password" formControlName="confirmarClaveCifrada">
+                                </mat-form-field>
+                            </div>
+                                                    
+                        </div>
+                        <!-- fin row 2da fila-->
+
+                        <!--3ra. fila -->
+                        <div class="row">
+
+                            <!--activo-->
+                            <div class="col-md-4 col-lg-3">
+                                <div class="add-bottom-padding">
+                                    <mat-slide-toggle color="primary" formControlName="activo" (click)="validarStatuActivo()">
+                                        activo
+                                    </mat-slide-toggle>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <mat-form-field appearance="standard" style="width: 100%">
+                                    <mat-label>Fecha Creacion</mat-label>
+                                    <input matInput formControlName="fechaCreacion" readonly>
+                                </mat-form-field>
+                            </div>
+
+
+                            <!--esAdmin-->
+                            <!--<div class="col-md-4 col-lg-3">
+                                <div class="add-bottom-padding">
+                                    <mat-slide-toggle color="primary" formControlName="esAdmin">esAdmin
+                                    </mat-slide-toggle>
+                                </div>
+                            </div>-->
+
+                        </div>
+                        <!-- fin row 3ta. fila-->
+
+                        <!--4ta. fila -->
+                        <div class="row">
+
+                        </div>
+
+                    </div>
+                    <!--example large-->
+                </mat-tab>
+                <!--Fin tab page datos usuaio-->
+
+                <mat-tab label="Roles del usuario">
+                    <!--para hacer la pagina mas grande -->
+                    <div class="example-large-box mat-elevation-z4">
+
+                        <!--Roles del Usuario-->
+
+                        <!--La variable IdUsuario esta declarada en el componente: rolesusuarios(_Security/User/rolesusuarios.components.ts),
+                                aqui lo que hace es pasar el noIdentificacion del cliente al componente rolesusuarios  -->
+
+                        <app-rolesfunciones [dataRolesUsuarios]="this.data.rolesUsuarios" [ventanaDelComponenteaMostrar]="'rolesusuarios'"></app-rolesfunciones>
+
+                    </div>
+                </mat-tab>
+                <!--Fin tab page roles usuaio-->
+
+            </mat-tab-group>
+
+            <div mat-dialog-actions>               
+                <button mat-raised-button color="primary" (click)="onGuardar()">{{textBotonGuardar}}</button>
+                <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

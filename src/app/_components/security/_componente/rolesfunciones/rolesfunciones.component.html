@@ -1,0 +1,22 @@
+<cdk-virtual-scroll-viewport itemSize="100" class="example-viewport">
+
+    <div class="contenedor-principal" cdkDropListGroup>
+      <div class="example-container">
+        <h3>{{tituloDeLista}}</h3>
+  
+        <div cdkDropList [cdkDropListData]="todalaLista" class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of todalaLista" cdkDrag>{{item}}</div>
+        </div>
+      </div>
+  
+      <div class="example-container">
+        <h3>{{tituloAsignado}}</h3>
+  
+        <div cdkDropList [cdkDropListData]="listAsignada" class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of listAsignada" cdkDrag>{{item}}</div>
+        </div>
+      </div>
+    </div>
+  
+  </cdk-virtual-scroll-viewport>
+  
